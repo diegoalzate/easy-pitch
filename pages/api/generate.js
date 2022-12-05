@@ -5,7 +5,7 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
-const basePromptPrefix = `Write me a pitch for a product with a hook question, description and conclusion, do this in a Gary Vee style. Please make sure the description goes depth.
+const basePromptPrefix = `Write me a pitch for a product with a hook question, description and conclusion, do this in a Gary Vee style. Please make sure the description goes in depth. Explain every technical concept in basic terms.
 Product: `;
 
 const generateAction = async (req, res) => {
@@ -22,7 +22,7 @@ const generateAction = async (req, res) => {
   const basePromptOutput = baseCompletion.data.choices.pop();
 
   const secondPrompt = `
-    Take the product, hook, description, conclusion and write it in a conversational way with a Gary Vee style. Add quirky jokes.
+    Take the product, hook, description, conclusion and write it in a conversational way. Make it engaging and easy to follow. Make it long enough for 2 minutes.
 
     ${basePromptOutput.text}
 
@@ -35,9 +35,9 @@ const generateAction = async (req, res) => {
     model: "text-davinci-003",
     prompt: `${secondPrompt}`,
     // I set a higher temperature for this one. Up to you!
-    temperature: 0.85,
+    temperature: 0.8,
     // I also increase max_tokens.
-    max_tokens: 500,
+    max_tokens: 1000,
   });
 
   // Get the output
