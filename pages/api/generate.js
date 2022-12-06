@@ -22,7 +22,7 @@ const generateAction = async (req, res) => {
   const basePromptOutput = baseCompletion.data.choices.pop();
 
   const secondPrompt = `
-    Take the product, hook, description, conclusion and write it in a conversational way. Make it engaging and easy to follow. Make it long enough for 2 minutes.
+    Take the product, hook, description, conclusion and write it in a conversational way. Make it engaging and easy to follow. Make it long enough for 2 minutes. Go into detail on how this solves a problem.
 
     ${basePromptOutput.text}
 
